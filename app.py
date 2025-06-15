@@ -1,13 +1,12 @@
-from flask import Flask
-import time
+import streamlit as st
+from tests.text import obtener_respuesta
 
-app = Flask(__name__)
+st.title("Hello, this is my new app!")
 
-def seconds_since_epoch():
-    epoch = time.time()
-    return int(epoch)
+prompt = st.text_input("preguntale algo a gemini")
 
-@app.route("/")
-def seconds():
-    return seconds_since_epoch()
+if st.button("Obtener respuesta"):
+    respuesta= obtener_respuesta(prompt)
+    st.text(respuesta)
+    st.sucess("Mensaje generado")
 
